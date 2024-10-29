@@ -1,0 +1,25 @@
+local UserInputService = game:GetService("UserInputService")
+local RunService = game:GetService("RunService")
+
+local isSpamming = false
+local targetKey = Enum.KeyCode.F  -- Key to be spammed
+local spamInterval = 0.1  -- Interval in seconds for spam clicking
+
+local function spamKey()
+    while isSpamming do
+        -- Simulate the action you want to perform with the F key
+        print("Key F pressed!")  -- Replace this with your actual action
+        wait(spamInterval)  -- Wait for the defined interval
+    end
+end
+
+UserInputService.InputBegan:Connect(function(input, isProcessed)
+    if not isProcessed and input.KeyCode == Enum.KeyCode.Z then
+        isSpamming = not isSpamming
+        print(isSpamming and "Spamming F key..." or "Stopped spamming F key.")
+        
+        if isSpamming then
+            spamKey()
+        end
+    end
+end)
